@@ -5,8 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script defer src="./index.js"></script>
 </head>
 <body>
-    
+    <h1>EFT-Ammo Chart</h1>
+    <div id="dropdownContainer">
+        <select id="dropdown" placeholder="--Select Choice--">
+            <option>--Select Choice--</option>
+            <option>Gun</option>
+            <option>Ammo</option>
+        </select>
+        <select id="caliber">
+            <option>--Select Caliber--</option>
+            <option>12 Guage Shot</option>
+            <option>12 Guage Slug</option>
+            <option>20 Guage</option>
+            <option>23x75mm</option>
+            <option>9x18mm</option>
+            <option>7.62x25mm</option>
+            <option>9x19mm</option>
+            <option>.45</option>
+            <option>9x21mm</option>
+            <option>.357 Magnum</option>
+            <option>5.7x28mm</option>
+            <option>4.6x30mm</option>
+            <option>9x39mm</option>
+            <option>.366</option>
+            <option>5.45x39mm</option>
+            <option>5.56x45mm</option>
+            <option>7.62x39mm</option>
+            <option>.300 blk</option>
+            <option>7.62x51mm</option>
+            <option>7.62x54R</option>
+            <option>12.7x55mm</option>
+            <option>.338</option>
+        </select>
+        <button type="submit" id="input">Search</button>
+    </div>
+    <div id="contentContainer">
+    </div>
 </body>
 </html>

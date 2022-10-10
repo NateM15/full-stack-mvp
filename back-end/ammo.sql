@@ -15,7 +15,7 @@ CREATE TABLE caliber (
 
 CREATE TABLE guns (
     guns_id int GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(30),
+    gun_name VARCHAR(30),
     caliber_id int,
     PRIMARY KEY(guns_id),
     CONSTRAINT fk_caliber
@@ -27,7 +27,7 @@ CREATE TABLE guns (
 
 CREATE TABLE ammo (
     ammo_id int GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(30),
+    ammo_name VARCHAR(30),
     effective VARCHAR(30),
     caliber_id int,
     PRIMARY KEY(ammo_id),
@@ -63,7 +63,7 @@ INSERT INTO caliber (name) VALUES
 ('12.7x55mm'),
 ('.338');
 
-INSERT INTO guns (name, caliber_id) VALUES
+INSERT INTO guns (gun_name, caliber_id) VALUES
 ('MCX', 18),
 ('M4A1', 16),
 ('ADAR 2-15', 16),
@@ -81,7 +81,7 @@ INSERT INTO guns (name, caliber_id) VALUES
 ('KS-23M', 4),
 ('Mk-18', 22);
 
-INSERT INTO ammo (name, effective, caliber_id) VALUES 
+INSERT INTO ammo (ammo_name, effective, caliber_id) VALUES 
 ('FLECHETTE', 'CLASS 6', 1),
 ('AP-20', 'CLASS 6', 2),
 ('DEVASTATOR', 'FLESH', 3),
