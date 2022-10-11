@@ -20,6 +20,9 @@ let favDiv;
 var sendData;
 let ammoInfo;
 
+let URL = 'https://eft-ammo.onrender.com/api/';
+let devURL = 'http://localhost:8001/api/';
+
 homeButton.addEventListener('click', () => {
     content.innerHTML = ""
 })
@@ -28,13 +31,13 @@ searchButton.addEventListener('click', event => {
     content.innerHTML = ""
     if(dropdownVal.value === "Gun"){
         if (caliber.value === "all"){
-            fetch(`http://localhost:8001/api/guns`)
+            fetch(`${URL}guns`)
             .then((response) => response.json())
             .then((data) => {
                 showGunData(data)
             })
         } else {
-            fetch(`http://localhost:8001/api/guns/gun/${caliber.value}`)
+            fetch(`${URL}guns/gun/${caliber.value}`)
             .then((response) => response.json())
             .then((data) => {
                 showGunData(data)
@@ -43,13 +46,13 @@ searchButton.addEventListener('click', event => {
 
     } else {
         if (caliber.value === "all"){
-            fetch(`http://localhost:8001/api/ammo`)
+            fetch(`${URL}ammo`)
             .then((response) => response.json())
             .then((data) => {
                 showAmmoData(data)
             })
         } else {
-            fetch(`http://localhost:8001/api/ammo/search/${caliber.value}`)
+            fetch(`${URL}ammo/search/${caliber.value}`)
             .then((response) => response.json())
             .then((data) => {
                 showAmmoData(data)
@@ -67,7 +70,7 @@ function addListener(button) {
             sendData = {gun: `${selectedFav.children[0].textContent}`, caliber: `${selectedFav.children[1].textContent}`}
             console.log(sendData)
 
-            fetch('http://localhost:8001/api/fav', {
+            fetch(`${URL}fav`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -87,7 +90,7 @@ function addListener(button) {
 
 favPage.addEventListener('click', () => {
     content.innerHTML = ""
-    fetch('http://localhost:8001/api/fav/page')
+    fetch(`${URL}fav/page`)
     .then((response) => response.json())
     .then((data) => {
         showFavorites(data)
@@ -99,7 +102,7 @@ deleteButton.addEventListener('click', () => {
     if (!deleteBarValue){
         alert('Name of favorite you wish to delete')
     } else {
-        fetch(`http://localhost:8001/api/delete/${deleteBarValue}`,
+        fetch(`${URL}delete/${deleteBarValue}`,
         {method: 'DELETE'})
         .then(alert('Delete Succesful'))    
     }
@@ -107,7 +110,7 @@ deleteButton.addEventListener('click', () => {
 
 topAmmo.addEventListener('click', () => {
     content.innerHTML = "";
-    fetch('http://localhost:8001/api/topthree')
+    fetch(`${URL}topthree`)
     .then((response) => response.json())
     .then((data) => showTopThree(data))
 });
@@ -118,7 +121,7 @@ topAmmoUpdate.addEventListener('click', () => {
     if (!ammoEff && !ammoName && Number.isInteger(ammoVal) === false){
         alert('Must have all info to update Top Three')
     } else {
-        fetch(`http://localhost:8001/api/topthree/patch/${ammoVal}`, {
+        fetch(`${URL}topthree/patch/${ammoVal}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
