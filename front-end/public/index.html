@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <script defer src="./index.js"></script>
 </head>
@@ -41,8 +42,24 @@
             <option>.338</option>
         </select>
         <button type="submit" id="input">Search</button>
+        <button type="submit" id="fav">Show Favorites</button>
+        <input type="text" placeholder="Delete from Favorite" id="deleteValue">
+        <button type="submit" id="delete">Delete</button>
+        <button type="submit" id="topAmmo">Top Ammo</button>
     </div>
+    <input type="text" placeholder="Name" id="topThreeName">
+    <input type="text" placeholder="Effective Against" id="topThreeEffective">
+    <select id="ammoDropdown">
+        <option>--Top Three Number--</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <button type="submit" id="topThreeUpdate">Update Top Three</button>
+    <h2 id="favDirections">Select one to add to favorites</h2>
+    <button type="submit" id="addFavorite">Add Favorite</button>
     <div id="contentContainer">
+
     </div>
 </body>
 </html>

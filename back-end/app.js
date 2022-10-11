@@ -62,7 +62,21 @@ app.delete('/api/delete/:delete', (req, res) => {
         res.status(201).send('Deleted from Favorites')
     });
 })
-
+//Accesses the top three
+app.get('/api/topthree', (req, res) => {
+    pool.query('SELECT * FROM top_three ORDER BY id ASC')
+    .then(result => {
+        res.send(result.rows)
+    })
+})
+app.patch('/api/topthree/patch/:id', (req, res) => {
+    let patchId = req.params.id
+    let patchInfo = req.body;
+    pool.query('UPDATE top_three SET name = $1, effective = $2 WHERE top_three.id = $3', [patchInfo.name, patchInfo.effective, patchId])
+    .then(result => {
+        res.status(201).send('Successful Patch')
+    })
+})
 
 app.listen(PORT, () => {
     console.log(`Liestening in on, ${PORT}`)

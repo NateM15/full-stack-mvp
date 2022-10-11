@@ -2,8 +2,10 @@ DROP DATABASE IF EXISTS eft_ammo;
 CREATE DATABASE eft_ammo;
 
 DROP TABLE IF EXISTS guns;
+DROP TABLE IF EXISTS top_three;
 DROP TABLE IF EXISTS ammo;
 DROP TABLE IF EXISTS caliber;
+DROP TABLE IF EXISTS favorites;
 
 
 CREATE TABLE caliber (
@@ -37,7 +39,19 @@ CREATE TABLE ammo (
             ON DELETE CASCADE
 );
 
+CREATE TABLE favorites (
+    id int GENERATED ALWAYS AS IDENTITY,
+    gun_name VARCHAR(30),
+    cal_name VARCHAR(30),
+    PRIMARY KEY(id)
+);
 
+CREATE TABLE top_three (
+    id int GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(10),
+    effective VARCHAR(10),
+    PRIMARY KEY(id)
+);
 
 INSERT INTO caliber (name) VALUES
 ('12 Guage Shot'),
@@ -115,6 +129,9 @@ INSERT INTO ammo (ammo_name, effective, caliber_id) VALUES
 ('AP', 'CLASS 6', 22);
 
 
-
+INSERT INTO top_three (name, effective) VALUES
+('M993', 'CLASS 6'),
+('SSA AP', 'CLASS 6'),
+('.338 AP', 'CLASS 6');
 
 
