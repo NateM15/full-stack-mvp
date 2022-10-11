@@ -49,10 +49,11 @@ app.get('/api/fav/page', (req, res) => {
 //Adds to favorites table
 app.post('/api/fav', (req, res) => {
     let favInput = req.body;
-    pool.query('INSERT INTO favorites (gun_name, cal_name) VALUES ($1, $2)', [favInput.gun, favInput.caliber])
+    pool.query('INSERT INTO favorites (gun_name, cal_name) VALUES ($1, $2) ON CONFLICT (gun_name, cal_name) DO NOTHING', [favInput.gun, favInput.caliber])
     .then (result => {
         res.status(201).send('Added Favorite')
-    });
+    })
+    .catch(res.status(400));
 });
 //Deletes from favorites table
 app.delete('/api/delete/:delete', (req, res) => {

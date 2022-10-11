@@ -41,9 +41,10 @@ CREATE TABLE ammo (
 
 CREATE TABLE favorites (
     id int GENERATED ALWAYS AS IDENTITY,
-    gun_name VARCHAR(30),
-    cal_name VARCHAR(30),
-    PRIMARY KEY(id)
+    gun_name VARCHAR(30) NOT NULL,
+    cal_name VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id),
+    UNIQUE (gun_name, cal_name)
 );
 
 CREATE TABLE top_three (

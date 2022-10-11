@@ -2,7 +2,6 @@ let dropdownVal = document.getElementById('dropdown');
 let searchButton = document.getElementById('input');
 let content = document.getElementById('contentContainer');
 let caliber = document.getElementById('caliber');
-let addFav = document.getElementById('addFavorite');
 let favPage = document.getElementById('fav');
 let deleteValue = document.getElementById('deleteValue');
 let deleteButton = document.getElementById('delete');
@@ -17,6 +16,7 @@ let caliberInfo;
 let divInfoContainer;
 let checkSelector = false;
 let favDiv;
+var sendData;
 
 //Creates the page when the search button is clicked
 searchButton.addEventListener('click', event => {
@@ -36,22 +36,16 @@ searchButton.addEventListener('click', event => {
     };
 });
 
-function addListener(div) {
-    div.addEventListener('click', e => {
-        // if (checkSelector == false){
-        //     checkSelector = true
-        // } else {
-        //     checkSelector = false
-        // }
-        // console.log(checkSelector)
+function addListener(button) {
+    button.addEventListener('click', e => {
         if (e.target.classList.contains('contentDiv')) {
 
         } else {
             selectedFav = e.target.parentElement;
-            addFav.addEventListener('click', () => {
-                var sendData = {gun: `${selectedFav.children[0].textContent}`, caliber: `${selectedFav.children[1].textContent}`}
-                console.log(sendData)
-                fetch('http://localhost:8001/api/fav', {
+            sendData = {gun: `${selectedFav.children[0].textContent}`, caliber: `${selectedFav.children[1].textContent}`}
+            console.log(sendData)
+
+            fetch('http://localhost:8001/api/fav', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -65,8 +59,7 @@ function addListener(div) {
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-            })
-        };
+        }
     })
 }
 
@@ -134,7 +127,7 @@ function showAmmoData(data) {
 };
 function showFavorites(data) {
     for(let i = 0; i < data.length; i++){
-        divCreation(data[i].gun_name, data[i].cal_name)
+        favDivCreation(data[i].gun_name, data[i].cal_name)
     }
 }
 function showTopThree(data) {
@@ -155,6 +148,22 @@ function divCreation(dataName, dataCaliber) {
     divInfoContainer.appendChild(divInfo);
     divInfoContainer.appendChild(caliberInfo);
     content.appendChild(divInfoContainer)
-    addListener(divInfoContainer)
+    let favButton = document.createElement('button')
+    favButton.innerHTML = "Add to Favorites";
+    divInfoContainer.appendChild(favButton)
+    addListener(favButton)
 };
 
+function favDivCreation(dataName, dataCaliber){
+    divInfoContainer = document.createElement('div')
+    divInfoContainer.classList.add('contentDiv')
+    divInfo = document.createElement('h1');
+    divInfo.textContent = `${dataName}`;
+    divInfo.setAttribute('id','divInfo');
+    caliberInfo = document.createElement('li');
+    caliberInfo.textContent = `${dataCaliber}`;
+    caliberInfo.setAttribute('id','calInfo');
+    divInfoContainer.appendChild(divInfo);
+    divInfoContainer.appendChild(caliberInfo);
+    content.appendChild(divInfoContainer)
+}
