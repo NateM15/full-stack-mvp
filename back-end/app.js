@@ -25,8 +25,29 @@ app.get('/api/guns/gun/:input', (req, res) => {
         console.error(error)
     });
 })
+app.get('/api/guns', (req, res) => {
+    let input = req.params.input
+    pool.query('SELECT * FROM guns RIGHT OUTER JOIN caliber ON caliber.caliber_id = guns.caliber_id WHERE caliber.caliber_id = guns.caliber_id')
+    .then(result => {
+        res.send(result.rows);
+    })
+    .catch((error) => {
+        console.error(error)
+    });
+})
 
-app.get('/api/ammo/:input', (req, res) => {
+app.get('/api/ammo', (req, res) => {
+    let input = req.params.input
+    pool.query('SELECT * FROM ammo RIGHT OUTER JOIN caliber ON caliber.caliber_id = ammo.caliber_id WHERE caliber.caliber_id = ammo.caliber_id')
+    .then(result => {
+        res.send(result.rows);
+    })
+    .catch((error) => {
+        console.error(error)
+    });
+});
+
+app.get('/api/ammo/search/:input', (req, res) => {
     let input = req.params.input
     pool.query('SELECT * FROM ammo RIGHT OUTER JOIN caliber ON caliber.caliber_id = ammo.caliber_id WHERE caliber.caliber_id = ammo.caliber_id AND name = $1',[`${input}`])
     .then(result => {

@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>EFT-Ammo Chart</h1>
+    <button type="home" id="home" class="button">Home</button>
     <div id="dropdownContainer">
         <select id="dropdown" placeholder="--Select Choice--">
             <option>--Select Choice--</option>
@@ -18,6 +19,7 @@
         </select>
         <select id="caliber">
             <option>--Select Caliber--</option>
+            <option>all</option>
             <option>12 Guage Shot</option>
             <option>12 Guage Slug</option>
             <option>20 Guage</option>
@@ -41,12 +43,14 @@
             <option>12.7x55mm</option>
             <option>.338</option>
         </select>
-        <button type="submit" id="input">Search</button>
-        <button type="submit" id="fav">Show Favorites</button>
-        <input type="text" placeholder="Delete from Favorite" id="deleteValue">
-        <button type="submit" id="delete">Delete</button>
-        <button type="submit" id="topAmmo">Top Ammo</button>
+        <button type="submit" id="input" class="button">Search</button>
     </div>
+    <div>
+        <button type="submit" id="fav" class="button">Show Favorites</button>
+        <input type="text" placeholder="Delete from Favorite" id="deleteValue">
+        <button type="submit" id="delete" class="button">Delete</button>
+    </div>
+    <button type="submit" id="topAmmo" class="button">Top Ammo</button>
     <input type="text" placeholder="Name" id="topThreeName">
     <input type="text" placeholder="Effective Against" id="topThreeEffective">
     <select id="ammoDropdown">

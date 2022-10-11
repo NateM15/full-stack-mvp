@@ -10,6 +10,7 @@ let topAmmoName = document.getElementById('topThreeName');
 let topAmmoEffective = document.getElementById('topThreeEffective');
 let topAmmoUpdate = document.getElementById('topThreeUpdate');
 let ammoDropdown = document.getElementById('ammoDropdown');
+let homeButton = document.getElementById('home')
 let selectedFav;
 let divInfo;
 let caliberInfo;
@@ -17,22 +18,43 @@ let divInfoContainer;
 let checkSelector = false;
 let favDiv;
 var sendData;
+let ammoInfo;
 
+homeButton.addEventListener('click', () => {
+    content.innerHTML = ""
+})
 //Creates the page when the search button is clicked
 searchButton.addEventListener('click', event => {
     content.innerHTML = ""
     if(dropdownVal.value === "Gun"){
-        fetch(`http://localhost:8001/api/guns/gun/${caliber.value}`)
+        if (caliber.value === "all"){
+            fetch(`http://localhost:8001/api/guns`)
             .then((response) => response.json())
             .then((data) => {
                 showGunData(data)
             })
+        } else {
+            fetch(`http://localhost:8001/api/guns/gun/${caliber.value}`)
+            .then((response) => response.json())
+            .then((data) => {
+                showGunData(data)
+            })
+        }
+
     } else {
-        fetch(`http://localhost:8001/api/ammo/${caliber.value}`)
-        .then((response) => response.json())
-        .then((data) => {
-            showAmmoData(data)
-        })
+        if (caliber.value === "all"){
+            fetch(`http://localhost:8001/api/ammo`)
+            .then((response) => response.json())
+            .then((data) => {
+                showAmmoData(data)
+            })
+        } else {
+            fetch(`http://localhost:8001/api/ammo/search/${caliber.value}`)
+            .then((response) => response.json())
+            .then((data) => {
+                showAmmoData(data)
+            })
+        }
     };
 });
 
@@ -122,7 +144,7 @@ function showGunData(data){
 //adds data to the page if they search by ammo
 function showAmmoData(data) {
     for(let i = 0; i < data.length; i++){
-        divCreation(data[i].ammo_name, data[i].name)
+        ammoDivCreation(data[i].ammo_name, data[i].name, data[i].effective)
     }
 };
 function showFavorites(data) {
@@ -135,14 +157,14 @@ function showTopThree(data) {
         divCreation(data[i].name, data[i].effective)
     }
 }
-//creates the information that the user sees
+//creates the information that the user sees for gun requests
 function divCreation(dataName, dataCaliber) {
     divInfoContainer = document.createElement('div')
     divInfoContainer.classList.add('contentDiv')
-    divInfo = document.createElement('h1');
+    divInfo = document.createElement('p');
     divInfo.textContent = `${dataName}`;
     divInfo.setAttribute('id','divInfo');
-    caliberInfo = document.createElement('li');
+    caliberInfo = document.createElement('p');
     caliberInfo.textContent = `${dataCaliber}`;
     caliberInfo.setAttribute('id','calInfo');
     divInfoContainer.appendChild(divInfo);
@@ -150,10 +172,38 @@ function divCreation(dataName, dataCaliber) {
     content.appendChild(divInfoContainer)
     let favButton = document.createElement('button')
     favButton.innerHTML = "Add to Favorites";
-    divInfoContainer.appendChild(favButton)
-    addListener(favButton)
+    favButton.classList.add('button');
+    divInfoContainer.appendChild(favButton);
+    addListener(favButton);
 };
+//creates the information that the user sees for ammo requests
+function ammoDivCreation(dataName, dataEffective, dataCaliber) {
+    divInfoContainer = document.createElement('div')
+    divInfoContainer.classList.add('contentDiv')
+    //creates name text
+    divInfo = document.createElement('p');
+    divInfo.textContent = `${dataName}`;
+    divInfo.setAttribute('id','divInfo');
+    //creates caliber text
+    caliberInfo = document.createElement('p');
+    caliberInfo.textContent = `${dataCaliber}`;
+    caliberInfo.setAttribute('id','calInfo');
+    //creates effective text
+    ammoInfo = document.createElement('p');
+    ammoInfo.textContent = `${dataEffective}`;
+    ammoInfo.setAttribute('id','calInfo');
 
+    divInfoContainer.appendChild(divInfo);
+    divInfoContainer.appendChild(ammoInfo)
+    divInfoContainer.appendChild(caliberInfo);
+    content.appendChild(divInfoContainer)
+    let favButton = document.createElement('button')
+    favButton.innerHTML = "Add to Favorites";
+    favButton.classList.add('button');
+    divInfoContainer.appendChild(favButton);
+    addListener(favButton);
+};
+//creates the information the user sees for their favorites
 function favDivCreation(dataName, dataCaliber){
     divInfoContainer = document.createElement('div')
     divInfoContainer.classList.add('contentDiv')
