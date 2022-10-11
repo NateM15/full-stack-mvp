@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const {Pool} = require('pg');
 
-const config = require('./config.js')["dev"]
+const config = require('./config.js')[process.env.NODE_ENV||"dev"]
 const PORT = config.port;
 
 
