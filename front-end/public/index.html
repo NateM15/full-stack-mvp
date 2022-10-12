@@ -9,7 +9,7 @@
     <script defer src="./index.js"></script>
 </head>
 <body>
-    <h1>EFT-Ammo Chart</h1>
+    <h1>Escape From Ammo</h1>
     <button type="home" id="home" class="button">Home</button>
     <div id="dropdownContainer">
         <select id="dropdown" placeholder="--Select Choice--">
@@ -45,21 +45,21 @@
         </select>
         <button type="submit" id="input" class="button">Search</button>
     </div>
-    <div>
-        <button type="submit" id="fav" class="button">Show Favorites</button>
-        <input type="text" placeholder="Delete from Favorite" id="deleteValue">
-        <button type="submit" id="delete" class="button">Delete</button>
-    </div>
+    <button type="submit" id="fav" class="button">Show Favorites</button>
     <button type="submit" id="topAmmo" class="button">Top Ammo</button>
-    <input type="text" placeholder="Name" id="topThreeName">
-    <input type="text" placeholder="Effective Against" id="topThreeEffective">
-    <select id="ammoDropdown">
-        <option>--Top Three Number--</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-    </select>
-    <button type="submit" id="topThreeUpdate">Update Top Three</button>
+    <div id="topAmmoContainer">
+        <input type="text" placeholder="Ammo Name" id="topThreeName">
+        <input type="text" placeholder="Effective Against" id="topThreeEffective">
+        <select id="ammoDropdown">
+            <option>--Top Three Number--</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <div>
+            <button type="submit" id="topThreeUpdate">Update Top Three</button>
+        </div>
+    </div>
     <div id="contentContainer">
 
     </div>
