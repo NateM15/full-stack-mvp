@@ -82,6 +82,7 @@ function addListener(button) {
                 })
                 .then((response) => response)
                 .then((data) => {
+                    alert(`${selectedFav.children[0].textContent} Added to Favorites!`)
                     console.log('Success:', data);
                 })
                 .catch((error) => {
