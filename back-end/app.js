@@ -6,12 +6,13 @@ const {Pool} = require('pg');
 
 const config = require('./config.js')[process.env.NODE_ENV||"dev"]
 const PORT = config.port;
-
+console.log('config:',config)
 
 const pool = new Pool({
     connectionString: config.connectionString
 });
 pool.connect();
+console.log('pool:',pool);
 
 app.use(cors());
 app.use(express.json());
