@@ -33,7 +33,7 @@ searchButton.addEventListener('click', event => {
     content.innerHTML = ""
     topAmmoContainer.style.display = 'none';
     if(dropdownVal.value === "Gun"){
-        if (caliber.value === "all"){
+        if (caliber.value === "All"){
             fetch(`${URL}guns`)
             .then((response) => response.json())
             .then((data) => {
@@ -48,7 +48,7 @@ searchButton.addEventListener('click', event => {
         }
 
     } else {
-        if (caliber.value === "all"){
+        if (caliber.value === "All"){
             fetch(`${URL}ammo`)
             .then((response) => response.json())
             .then((data) => {
