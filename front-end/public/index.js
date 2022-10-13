@@ -86,8 +86,10 @@ function addListener(button) {
         } else {
             //Gets information from the div that the add to favorites button was pressed in
             selectedFav = e.target.parentElement;
+            let favGun = selectedFav.children[0].textContent.split(' ')
+            let favGunCal = selectedFav.children[1].textContent.split(' ')
             /**Note: Refactor front end and back end to support both guns and ammo favorites**/
-            sendData = {gun: `${selectedFav.children[1].textContent}`, caliber: `${selectedFav.children[3].textContent}`}
+            sendData = {gun: `${favGun[1]}`, caliber: `${favGunCal[1]}`}
             console.log(sendData)
             //Adds the information into the favorites table
             fetch(`${URL}fav`, {
@@ -128,8 +130,8 @@ function deleteButton(button){
     button.addEventListener('click', event => {
         content.innerHTML = "";
         let deleteBarValue = event.target.parentElement
-        console.log(deleteBarValue.children[1].textContent)
-        fetch(`${URL}delete/${deleteBarValue.children[1].textContent}`,
+        let deleteValue = deleteBarValue.children[1].textContent.split(' ')
+        fetch(`${URL}delete/${deleteValue[1]}`,
         {method: 'DELETE'})
         .then(alert('Delete Succesful'))
         .then(
