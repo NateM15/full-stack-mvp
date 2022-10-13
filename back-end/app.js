@@ -58,9 +58,9 @@ app.get('/api/ammo/search/:input', (req, res) => {
         console.error(error)
     });
 });
-//Shows info from favorites table
+//Shows info from favorites table and orders by caliber
 app.get('/api/fav/page', (req, res) => {
-    pool.query('SELECT * FROM favorites')
+    pool.query('SELECT * FROM favorites ORDER BY cal_name ASC')
     .then(result => {
         res.send(result.rows);
     })
@@ -92,6 +92,7 @@ app.get('/api/topthree', (req, res) => {
         res.send(result.rows)
     })
 })
+//Updates information in top three
 app.patch('/api/topthree/patch/:id', (req, res) => {
     let patchId = req.params.id
     let patchInfo = req.body;
