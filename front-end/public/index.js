@@ -87,7 +87,7 @@ function addListener(button) {
             //Gets information from the div that the add to favorites button was pressed in
             selectedFav = e.target.parentElement;
             /**Note: Refactor front end and back end to support both guns and ammo favorites**/
-            sendData = {gun: `${selectedFav.children[0].textContent[1]}`, caliber: `${selectedFav.children[1].textContent[4]}`}
+            sendData = {gun: `${selectedFav.children.textContent}`, caliber: `${selectedFav.children.textContent}`}
             console.log(sendData)
             //Adds the information into the favorites table
             fetch(`${URL}fav`, {
