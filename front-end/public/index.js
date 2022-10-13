@@ -86,6 +86,7 @@ function addListener(button) {
         } else {
             //Gets information from the div that the add to favorites button was pressed in
             selectedFav = e.target.parentElement;
+            /**Note: Refactor front end and back end to support both guns and ammo favorites**/
             sendData = {gun: `${selectedFav.children[0].textContent}`, caliber: `${selectedFav.children[1].textContent}`}
             console.log(sendData)
             //Adds the information into the favorites table
@@ -239,12 +240,12 @@ function divCreation(dataName, dataCaliber) {
     
     //Adds a paragraph tag for gun information
     divInfo = document.createElement('p');
-    divInfo.textContent = `${dataName}`;
+    divInfo.textContent = `Gun: ${dataName}`;
     divInfo.setAttribute('id','divInfo');
     
     //Adds a paragraph element for the caliber information to be shown
     caliberInfo = document.createElement('p');
-    caliberInfo.textContent = `${dataCaliber}`;
+    caliberInfo.textContent = `Caliber: ${dataCaliber}`;
     caliberInfo.setAttribute('id','calInfo');
     
     //Places all the information into the container div
@@ -268,17 +269,17 @@ function ammoDivCreation(dataName, dataEffective, dataCaliber) {
     
     //creates name text
     divInfo = document.createElement('p');
-    divInfo.textContent = `${dataName}`;
+    divInfo.textContent = `Ammo Name: ${dataName}`;
     divInfo.setAttribute('id','divInfo');
     
     //creates caliber text
     caliberInfo = document.createElement('p');
-    caliberInfo.textContent = `${dataCaliber}`;
+    caliberInfo.textContent = `Caliber: ${dataCaliber}`;
     caliberInfo.setAttribute('id','calInfo');
     
     //creates effective text
     ammoInfo = document.createElement('p');
-    ammoInfo.textContent = `${dataEffective}`;
+    ammoInfo.textContent = `Effective Against: ${dataEffective}`;
     ammoInfo.setAttribute('id','calInfo');
     
     //Appends all information into container then content
@@ -304,12 +305,12 @@ function favDivCreation(dataName, dataCaliber){
 
     //Adds name information
     divInfo = document.createElement('p');
-    divInfo.textContent = `${dataName}`;
+    divInfo.textContent = `Name: ${dataName}`;
     divInfo.setAttribute('id','divInfo');
 
     //Adds caliber information
     caliberInfo = document.createElement('p');
-    caliberInfo.textContent = `${dataCaliber}`;
+    caliberInfo.textContent = `Caliber: ${dataCaliber}`;
     caliberInfo.setAttribute('id','calInfo');
 
     //Adds all information to the page
