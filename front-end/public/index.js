@@ -15,7 +15,6 @@ let selectedFav;
 let divInfo;
 let caliberInfo;
 let divInfoContainer;
-let checkSelector = false;
 let favDiv;
 var sendData;
 let ammoInfo;
@@ -289,11 +288,11 @@ function ammoDivCreation(dataName, dataCaliber, dataEffective) {
     content.appendChild(divInfoContainer)
     
     //Adds a favorite button to each div
-    let favButton = document.createElement('button')
-    favButton.innerHTML = "Add to Favorites";
-    favButton.classList.add('button');
-    divInfoContainer.appendChild(favButton);
-    addListener(favButton);
+    // let favButton = document.createElement('button')
+    // favButton.innerHTML = "Add to Favorites";
+    // favButton.classList.add('button');
+    // divInfoContainer.appendChild(favButton);
+    // addListener(favButton);
 };
 
 //Favorites page
