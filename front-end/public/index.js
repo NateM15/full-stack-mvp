@@ -130,7 +130,7 @@ function deleteButton(button){
     button.addEventListener('click', event => {
         content.innerHTML = "";
         let deleteBarValue = event.target.parentElement
-        let deleteValue = deleteBarValue.children[1].textContent.split(' ')
+        let deleteValue = deleteBarValue.children[0].textContent.split(' ')
         fetch(`${URL}delete/${deleteValue[1]}`,
         {method: 'DELETE'})
         .then(alert('Delete Succesful'))
