@@ -263,7 +263,7 @@ function divCreation(dataName, dataCaliber) {
 
 //Ammo Requests
 //creates the information that the user sees for ammo requests
-function ammoDivCreation(dataName, dataEffective, dataCaliber) {
+function ammoDivCreation(dataName, dataCaliber, dataEffective) {
     divInfoContainer = document.createElement('div')
     divInfoContainer.classList.add('contentDiv')
     
@@ -280,12 +280,12 @@ function ammoDivCreation(dataName, dataEffective, dataCaliber) {
     //creates effective text
     ammoInfo = document.createElement('p');
     ammoInfo.textContent = `Effective Against: ${dataEffective}`;
-    ammoInfo.setAttribute('id','calInfo');
+    ammoInfo.setAttribute('id','effective');
     
     //Appends all information into container then content
     divInfoContainer.appendChild(divInfo);
-    divInfoContainer.appendChild(ammoInfo)
-    divInfoContainer.appendChild(caliberInfo);
+    divInfoContainer.appendChild(caliberInfo)
+    divInfoContainer.appendChild(ammoInfo);
     content.appendChild(divInfoContainer)
     
     //Adds a favorite button to each div
