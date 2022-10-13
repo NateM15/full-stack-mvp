@@ -95,7 +95,7 @@ app.get('/api/topthree', (req, res) => {
 app.patch('/api/topthree/patch/:id', (req, res) => {
     let patchId = req.params.id
     let patchInfo = req.body;
-    pool.query('UPDATE top_three SET name = $1, effective = $2 WHERE top_three.id = $3', [patchInfo.name, patchInfo.effective, patchId])
+    pool.query('UPDATE top_three SET name = $1, caliber = $2, effective = $3 WHERE top_three.id = $4', [patchInfo.name,  patchInfo.caliber, patchInfo.effective, patchId])
     .then(result => {
         res.status(201).send('Successful Patch')
     })

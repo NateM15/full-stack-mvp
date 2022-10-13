@@ -6,6 +6,7 @@ let caliber = document.getElementById('caliber');
 let favPage = document.getElementById('fav');
 let topAmmo = document.getElementById('topAmmo');
 let topAmmoName = document.getElementById('topThreeName');
+let topAmmoCaliber = document.getElementById('topAmmoCaliber');
 let topAmmoEffective = document.getElementById('topThreeEffective');
 let topAmmoUpdate = document.getElementById('topThreeUpdate');
 let ammoDropdown = document.getElementById('ammoDropdown');
@@ -162,6 +163,7 @@ topAmmoUpdate.addEventListener('click', () => {
     //Adds variables to acces the information used for the json body
     let ammoVal = ammoDropdown.value;
     let ammoName = topAmmoName.value;
+    let ammoCal = topAmmoCaliber.value;
     let ammoEff = topAmmoEffective.value;
     if (!ammoEff && !ammoName && Number.isInteger(ammoVal) === false){
         alert('Must have all info to update Top Three')
@@ -173,6 +175,7 @@ topAmmoUpdate.addEventListener('click', () => {
             },
             body: JSON.stringify({
                 name: `${ammoName}`,
+                caliber: `${ammoCal}`,
                 effective: `${ammoEff}`
             })
         })
@@ -187,6 +190,7 @@ topAmmoUpdate.addEventListener('click', () => {
             .then(                
                 topAmmoName.value = "",
                 topAmmoEffective.value = "",
+                topAmmoCaliber.value = "",
                 content.innerHTML = ""
             )
             .then((data) => {
@@ -226,7 +230,7 @@ function showFavorites(data) {
 //Creates the divs and adds ifnormation to the top three ammo page when Top Ammo is pressed
 function showTopThree(data) {
     for(let i = 0; i < data.length; i++){
-        divCreation(data[i].name, data[i].effective)
+        ammoDivCreation(data[i].name, data[i].caliber, data[i].effective)
     }
 };
 

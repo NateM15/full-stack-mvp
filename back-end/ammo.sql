@@ -50,6 +50,7 @@ CREATE TABLE favorites (
 CREATE TABLE top_three (
     id int GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(10),
+    caliber VARCHAR(15),
     effective VARCHAR(10),
     PRIMARY KEY(id)
 );
@@ -130,9 +131,9 @@ INSERT INTO ammo (ammo_name, effective, caliber_id) VALUES
 ('AP', 'CLASS 6', 22);
 
 
-INSERT INTO top_three (name, effective) VALUES
-('M993', 'CLASS 6'),
-('SSA AP', 'CLASS 6'),
-('.338 AP', 'CLASS 6');
+INSERT INTO top_three (name, caliber, effective) VALUES
+('M995', '5.56x45mm', 'CLASS 6'),
+('SSA AP', '5.56x45mm', 'CLASS 6'),
+('.338 AP', '.338', 'CLASS 6');
 
 
